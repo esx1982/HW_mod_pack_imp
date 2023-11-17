@@ -1,16 +1,14 @@
-# This is a sample Python script.
+from application.salary import calculate_salary
+from application.db.people import get_employees
+from datetime import datetime as dt
+from rus2latin_date import Converter
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+date = dt.now()
+c = Converter()
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    get_employees(f'Евгений, {date.date()} в {date.time().replace(microsecond=0)}')
+    calculate_salary('Евгений', 'менеджер')
+    get_employees(f'Maksim, {c.conv(str(date.date()))} в {date.time().replace(microsecond=0)}')
+    calculate_salary('Maksim', 'general manager')
+    print(c.conv(f"{date.date()}"))
